@@ -5,8 +5,15 @@
  * @param {Object}
  * @return {Array}
  */
-
-var getAllUsernames;
+var getAllUsernames = function(obj){
+  var newArr = [];
+  var users = obj.data.id;
+  for (var i in users){
+      console.log(users[i].username);
+    newArr.push(users[i].username);
+  } 
+  return newArr;
+};
 
 /* #hometownCity
  *
@@ -15,8 +22,13 @@ var getAllUsernames;
  * @param {Array}
  * @return {String}
  */
-
-var hometownCity;
+var hometownCity = function(arr){
+    console.log(arr);
+  for (var i = 0; i < arr.length; i++){
+    console.log(arr[i].hometown.state.montana.city);
+    return arr[i].hometown.state.montana.city;
+  }
+};
 
 /* #usersCurrentState
  *
@@ -26,8 +38,16 @@ var hometownCity;
  * @param {Array}
  * @return {Object}
  */
-
-var usersCurrentState;
+var usersCurrentState = function(data, usernames){
+  var newObj = {};
+  // {username : current state (data)};
+    for (var i = 0; i < data.length; i++){
+      console.log(data[i]);
+      newObj[usernames[i]] = data[i][1].currentLocation.state; 
+      console.log(newObj);
+    }
+    return newObj;
+};
 
 /* #findAdmin
  *
@@ -36,8 +56,15 @@ var usersCurrentState;
  * @param {Object}
  * @return {String}
  */
-
-var findAdmin;
+var findAdmin = function(obj){
+  var users = obj.data.id;
+  for (var i in users){
+    if (users[i].admin){
+        console.log(users[i].admin);
+      return users[i].username;
+    }
+  }
+};
 
 /* #addNewMovie
  *
@@ -48,8 +75,15 @@ var findAdmin;
  * @param {String} movie to add to array
  * @return {Array}
  */
-
-var addNewMovie;
+var addNewMovie = function(obj, n, movie){
+  var arr = obj.data.id[n].favoriteMovies;
+    console.log(obj);
+    console.log(n);
+    console.log(movie);
+  arr.push(movie);
+    console.log(arr);
+  return arr;
+};
 
 /* #favoriteBooks
  *
@@ -440,44 +474,44 @@ var getPrices;
 var addName;
 
 module.exports = {
-  getAllUsernames: null,
-  hometownCity: null,
-  usersCurrentState: null,
-  findAdmin: null,
-  addNewMovie: null,
-  favoriteBooks: null,
-  countTracks: null,
-  newTrack: null,
-  fullTimeStatus: null,
-  bigDataTrack: null,
-  incrementAge: null,
-  movieRatings: null,
-  sumOfAllStudents: null,
-  mapLanguageToCreator: null,
-  mapOccurrences: null,
-  countLanguages: null,
-  phoneNumber: null,
-  reverseStrings: null,
-  getAgeById: null,
-  allTheStates: null,
-  allTheMovies: null,
-  addCoffeeFlavor: null,
-  avgCoffeePrice: null,
-  updateBakedGoodsPrice: null,
-  costOfCoffeeOnOrder: null,
-  uniqueCoffeeFlavors: null,
-  cheapestSandwich: null,
-  allcafeItems: null,
-  halfOffSandwiches: null,
-  getNoMeatSandwiches: null,
-  updateCoffeeInventory: null,
-  findCoffee: null,
-  totalPopulation: null,
-  placesLived: null,
-  addSchool: null,
-  updateGitHubRank: null,
-  top3rankedLang: null,
-  removeIngredient: null,
-  getPrices: null,
-  addName: null
+  getAllUsernames: getAllUsernames,
+  hometownCity: hometownCity,
+  usersCurrentState: usersCurrentState,
+  findAdmin: findAdmin,
+  addNewMovie: addNewMovie,
+  favoriteBooks: favoriteBooks,
+  countTracks: countTracks,
+  newTrack: newTrack,
+  fullTimeStatus: fullTimeStatus,
+  bigDataTrack: bigDataTrack,
+  incrementAge: incrementAge,
+  movieRatings: movieRatings,
+  sumOfAllStudents: sumOfAllStudents,
+  mapLanguageToCreator: mapLanguageToCreator,
+  mapOccurrences: mapOccurrences,
+  countLanguages: countLanguages,
+  phoneNumber: phoneNumber,
+  reverseStrings: reverseStrings,
+  getAgeById: getAgeById,
+  allTheStates: allTheStates,
+  allTheMovies: allTheMovies,
+  addCoffeeFlavor: addCoffeeFlavor,
+  avgCoffeePrice: avgCoffeePrice,
+  updateBakedGoodsPrice: updateBakedGoodsPrice,
+  costOfCoffeeOnOrder: costOfCoffeeOnOrder,
+  uniqueCoffeeFlavors: uniqueCoffeeFlavors,
+  cheapestSandwich: cheapestSandwich,
+  allcafeItems: allcafeItems,
+  halfOffSandwiches: halfOffSandwiches,
+  getNoMeatSandwiches: getNoMeatSandwiches,
+  updateCoffeeInventory: updateCoffeeInventory,
+  findCoffee: findCoffee,
+  totalPopulation: totalPopulation,
+  placesLived: placesLived,
+  addSchool: addSchool,
+  updateGitHubRank: updateGitHubRank,
+  top3rankedLang: top3rankedLang,
+  removeIngredient: removeIngredient,
+  getPrices: getPrices,
+  addName: addName
 };
