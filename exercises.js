@@ -43,7 +43,7 @@ var usersCurrentState = function(data, usernames){
   // {username : current state (data)};
     for (var i = 0; i < data.length; i++){
       console.log(data[i]);
-      newObj[usernames[i]] = data[i][1].currentLocation.state; 
+    newObj[usernames[i]] = data[i][1].currentLocation.state; 
       console.log(newObj);
     }
     return newObj;
@@ -92,8 +92,19 @@ var addNewMovie = function(obj, n, movie){
  * @param {Object}
  * @return {Array}
  */
-
-var favoriteBooks;
+var favoriteBooks = function(obj){
+  var books = {}; 
+      var users = obj.data.id;
+          // console.log(users);
+      for (var i in users){
+          console.log(users[i].favoriteBook);
+        books[users[i].favoriteBook.author] = users[i].favoriteBook.title;
+          console.log(books);
+      }
+      var arr = [books];
+        console.log(arr);
+      return arr; 
+  };
 
 /* #countTracks
  *
@@ -102,8 +113,10 @@ var favoriteBooks;
  * @param {Object}
  * @return {Number}
  */
-
-var countTracks;
+var countTracks = function(obj){
+    console.log(obj);
+  return Object.keys(obj.devLeague.tracks).length;
+};
 
 /* #fullTimeStatus
  *
@@ -113,8 +126,13 @@ var countTracks;
  * @param {String}
  * @return {Object}
  */
-
-var fullTimeStatus;
+var fullTimeStatus = function(data, trackName){
+      console.log(data);
+      console.log(trackName);
+  data[trackName][0].fullTime.offered = true;
+      console.log(data[trackName][0].fullTime);
+  return data[trackName][0].fullTime;
+};
 
 /* #newTrack
  *
@@ -125,8 +143,14 @@ var fullTimeStatus;
  * @param {String}
  * @return {Object}
  */
-
-var newTrack;
+var newTrack = function(data, array, string){
+      console.log(data);
+      console.log(array);
+      console.log(string);
+  data[string] = array[0];
+    console.log(data);
+  return data;
+};
 
 /* #bigDataTrack
  *
@@ -136,8 +160,16 @@ var newTrack;
  * @param {String}
  * @return {Object }
  */
-
-var bigDataTrack;
+var bigDataTrack = function(data, trackName){
+      console.log(data);
+      console.log(trackName);
+var newObj = {};
+    data.tracks[trackName][0].fullTime.offered = true;
+    data.tracks[trackName][0].fullTime.currentStudents = 10;
+    newObj[trackName] = data.tracks[trackName][0].fullTime;
+      console.log(newObj);
+    return newObj;
+};
 
 /* #incrementAge
  *
