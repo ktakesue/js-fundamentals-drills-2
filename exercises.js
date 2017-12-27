@@ -5,8 +5,15 @@
  * @param {Object}
  * @return {Array}
  */
-
-var getAllUsernames;
+var getAllUsernames = function(obj){
+  var newArr = [];
+  var users = obj.data.id;
+  for (var i in users){
+      console.log(users[i].username);
+    newArr.push(users[i].username);
+  } 
+  return newArr;
+};
 
 /* #hometownCity
  *
@@ -15,8 +22,13 @@ var getAllUsernames;
  * @param {Array}
  * @return {String}
  */
-
-var hometownCity;
+var hometownCity = function(arr){
+    console.log(arr);
+  for (var i = 0; i < arr.length; i++){
+    console.log(arr[i].hometown.state.montana.city);
+    return arr[i].hometown.state.montana.city;
+  }
+};
 
 /* #usersCurrentState
  *
@@ -26,8 +38,16 @@ var hometownCity;
  * @param {Array}
  * @return {Object}
  */
-
-var usersCurrentState;
+var usersCurrentState = function(data, usernames){
+  var newObj = {};
+  // {username : current state (data)};
+    for (var i = 0; i < data.length; i++){
+      console.log(data[i]);
+    newObj[usernames[i]] = data[i][1].currentLocation.state; 
+      console.log(newObj);
+    }
+    return newObj;
+};
 
 /* #findAdmin
  *
@@ -36,8 +56,15 @@ var usersCurrentState;
  * @param {Object}
  * @return {String}
  */
-
-var findAdmin;
+var findAdmin = function(obj){
+  var users = obj.data.id;
+  for (var i in users){
+    if (users[i].admin){
+        console.log(users[i].admin);
+      return users[i].username;
+    }
+  }
+};
 
 /* #addNewMovie
  *
@@ -48,8 +75,15 @@ var findAdmin;
  * @param {String} movie to add to array
  * @return {Array}
  */
-
-var addNewMovie;
+var addNewMovie = function(obj, n, movie){
+  var arr = obj.data.id[n].favoriteMovies;
+    console.log(obj);
+    console.log(n);
+    console.log(movie);
+  arr.push(movie);
+    console.log(arr);
+  return arr;
+};
 
 /* #favoriteBooks
  *
@@ -58,8 +92,19 @@ var addNewMovie;
  * @param {Object}
  * @return {Array}
  */
-
-var favoriteBooks;
+var favoriteBooks = function(obj){
+  var books = {}; 
+      var users = obj.data.id;
+          // console.log(users);
+      for (var i in users){
+          console.log(users[i].favoriteBook);
+        books[users[i].favoriteBook.author] = users[i].favoriteBook.title;
+          console.log(books);
+      }
+      var arr = [books];
+        console.log(arr);
+      return arr; 
+  };
 
 /* #countTracks
  *
@@ -68,8 +113,10 @@ var favoriteBooks;
  * @param {Object}
  * @return {Number}
  */
-
-var countTracks;
+var countTracks = function(obj){
+    console.log(obj);
+  return Object.keys(obj.devLeague.tracks).length;
+};
 
 /* #fullTimeStatus
  *
@@ -79,8 +126,13 @@ var countTracks;
  * @param {String}
  * @return {Object}
  */
-
-var fullTimeStatus;
+var fullTimeStatus = function(data, trackName){
+      console.log(data);
+      console.log(trackName);
+  data[trackName][0].fullTime.offered = true;
+      console.log(data[trackName][0].fullTime);
+  return data[trackName][0].fullTime;
+};
 
 /* #newTrack
  *
@@ -91,8 +143,14 @@ var fullTimeStatus;
  * @param {String}
  * @return {Object}
  */
-
-var newTrack;
+var newTrack = function(data, array, string){
+      console.log(data);
+      console.log(array);
+      console.log(string);
+  data[string] = array[0];
+    console.log(data);
+  return data;
+};
 
 /* #bigDataTrack
  *
@@ -102,8 +160,16 @@ var newTrack;
  * @param {String}
  * @return {Object }
  */
-
-var bigDataTrack;
+var bigDataTrack = function(data, trackName){
+      console.log(data);
+      console.log(trackName);
+var newObj = {};
+    data.tracks[trackName][0].fullTime.offered = true;
+    data.tracks[trackName][0].fullTime.currentStudents = 10;
+    newObj[trackName] = data.tracks[trackName][0].fullTime;
+      console.log(newObj);
+    return newObj;
+};
 
 /* #incrementAge
  *
@@ -113,8 +179,16 @@ var bigDataTrack;
  * @param {String}
  * @return {Object}
  */
-
-var incrementAge;
+var incrementAge = function(value, key){
+    console.log(value);
+    console.log(key);
+  var newObj = {};
+  for (var i = 0; i < key.length; i++){
+    newObj[key[i]] = (value[i] + 1) + " years old";
+      console.log(newObj);
+    }
+    return newObj;
+};
 
 /* #movieRatings
  *
@@ -124,8 +198,18 @@ var incrementAge;
  * @param {Array}
  * @return {Object}
  */
-
-var movieRatings;
+var movieRatings = function(key, value){
+      console.log(key);
+      console.log(value);
+  var newObj = {};
+    key.forEach(function(element){
+      for (var i = 0; i < element.length; i++){
+        newObj[element[i]] = value[i];
+          console.log(newObj);
+    }
+  });
+    return newObj;
+};
 
 /* #sumOfAllStudents
  *
@@ -134,8 +218,9 @@ var movieRatings;
  * @param {Object}
  * @return {Number}
  */
-
-var sumOfAllStudents;
+var sumOfAllStudents = function(obj){
+      console.log(obj);
+};
 
 /* #mapLanguageToCreator
  *
@@ -440,44 +525,44 @@ var getPrices;
 var addName;
 
 module.exports = {
-  getAllUsernames: null,
-  hometownCity: null,
-  usersCurrentState: null,
-  findAdmin: null,
-  addNewMovie: null,
-  favoriteBooks: null,
-  countTracks: null,
-  newTrack: null,
-  fullTimeStatus: null,
-  bigDataTrack: null,
-  incrementAge: null,
-  movieRatings: null,
-  sumOfAllStudents: null,
-  mapLanguageToCreator: null,
-  mapOccurrences: null,
-  countLanguages: null,
-  phoneNumber: null,
-  reverseStrings: null,
-  getAgeById: null,
-  allTheStates: null,
-  allTheMovies: null,
-  addCoffeeFlavor: null,
-  avgCoffeePrice: null,
-  updateBakedGoodsPrice: null,
-  costOfCoffeeOnOrder: null,
-  uniqueCoffeeFlavors: null,
-  cheapestSandwich: null,
-  allcafeItems: null,
-  halfOffSandwiches: null,
-  getNoMeatSandwiches: null,
-  updateCoffeeInventory: null,
-  findCoffee: null,
-  totalPopulation: null,
-  placesLived: null,
-  addSchool: null,
-  updateGitHubRank: null,
-  top3rankedLang: null,
-  removeIngredient: null,
-  getPrices: null,
-  addName: null
+  getAllUsernames: getAllUsernames,
+  hometownCity: hometownCity,
+  usersCurrentState: usersCurrentState,
+  findAdmin: findAdmin,
+  addNewMovie: addNewMovie,
+  favoriteBooks: favoriteBooks,
+  countTracks: countTracks,
+  newTrack: newTrack,
+  fullTimeStatus: fullTimeStatus,
+  bigDataTrack: bigDataTrack,
+  incrementAge: incrementAge,
+  movieRatings: movieRatings,
+  sumOfAllStudents: sumOfAllStudents,
+  mapLanguageToCreator: mapLanguageToCreator,
+  mapOccurrences: mapOccurrences,
+  countLanguages: countLanguages,
+  phoneNumber: phoneNumber,
+  reverseStrings: reverseStrings,
+  getAgeById: getAgeById,
+  allTheStates: allTheStates,
+  allTheMovies: allTheMovies,
+  addCoffeeFlavor: addCoffeeFlavor,
+  avgCoffeePrice: avgCoffeePrice,
+  updateBakedGoodsPrice: updateBakedGoodsPrice,
+  costOfCoffeeOnOrder: costOfCoffeeOnOrder,
+  uniqueCoffeeFlavors: uniqueCoffeeFlavors,
+  cheapestSandwich: cheapestSandwich,
+  allcafeItems: allcafeItems,
+  halfOffSandwiches: halfOffSandwiches,
+  getNoMeatSandwiches: getNoMeatSandwiches,
+  updateCoffeeInventory: updateCoffeeInventory,
+  findCoffee: findCoffee,
+  totalPopulation: totalPopulation,
+  placesLived: placesLived,
+  addSchool: addSchool,
+  updateGitHubRank: updateGitHubRank,
+  top3rankedLang: top3rankedLang,
+  removeIngredient: removeIngredient,
+  getPrices: getPrices,
+  addName: addName
 };
