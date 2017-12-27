@@ -179,8 +179,16 @@ var newObj = {};
  * @param {String}
  * @return {Object}
  */
-
-var incrementAge;
+var incrementAge = function(value, key){
+    console.log(value);
+    console.log(key);
+  var newObj = {};
+  for (var i = 0; i < key.length; i++){
+    newObj[key[i]] = (value[i] + 1) + " years old";
+      console.log(newObj);
+    }
+    return newObj;
+};
 
 /* #movieRatings
  *
@@ -190,8 +198,18 @@ var incrementAge;
  * @param {Array}
  * @return {Object}
  */
-
-var movieRatings;
+var movieRatings = function(key, value){
+      console.log(key);
+      console.log(value);
+  var newObj = {};
+    key.forEach(function(element){
+      for (var i = 0; i < element.length; i++){
+        newObj[element[i]] = value[i];
+          console.log(newObj);
+    }
+  });
+    return newObj;
+};
 
 /* #sumOfAllStudents
  *
@@ -200,8 +218,9 @@ var movieRatings;
  * @param {Object}
  * @return {Number}
  */
-
-var sumOfAllStudents;
+var sumOfAllStudents = function(obj){
+      console.log(obj);
+};
 
 /* #mapLanguageToCreator
  *
